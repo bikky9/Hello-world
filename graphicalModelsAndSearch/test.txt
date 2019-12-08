@@ -1,0 +1,75 @@
+In computational linguistics , word-sense disambiguation -LRB- WSD -RRB- is an open problem of natural language processing , which governs the process of identifying which sense of a word -LRB- i.e. meaning -RRB- is used in a sentence , when the word has multiple meanings -LRB- polysemy -RRB- .
+The solution to this problem impacts other computer-related writing , such as discourse , improving relevance of search engines , anaphora resolution , coherence , inference et cetera .
+Research has progressed steadily to the point where WSD systems achieve sufficiently high levels of accuracy on a variety of word types and ambiguities .
+A rich variety of techniques have been researched , from dictionary-based methods that use the knowledge encoded in lexical resources , to supervised machine learning methods in which a classifier is trained for each distinct word on a corpus of manually sense-annotated examples , to completely unsupervised methods that cluster occurrences of words , thereby inducing word senses .
+Among these , supervised learning approaches have been the most successful algorithms to date .
+Current accuracy is difficult to state without a host of caveats .
+In English , accuracy at the coarse-grained -LRB- homograph -RRB- level is routinely above 90 % , with some methods on particular homographs achieving over 96 % .
+On finer-grained sense distinctions , top accuracies from 59.1 % to 69.0 % have been reported in recent evaluation exercises -LRB- SemEval-2007 , Senseval-2 -RRB- , where the baseline accuracy of the simplest possible algorithm of always choosing the most frequent sense was 51.4 % and 57 % , respectively .
+WSD task has two variants : `` lexical sample '' and `` all words '' task .
+The former comprises disambiguating the occurrences of a small sample of target words which were previously selected , while in the latter all the words in a piece of running text need to be disambiguated .
+The latter is deemed a more realistic form of evaluation , but the corpus is more expensive to produce because human annotators have to read the definitions for each word in the sequence every time they need to make a tagging judgement , rather than once for a block of instances for the same target word .
+To give a hint how all this works , consider two examples of the distinct senses that exist for the -LRB- written -RRB- word `` bass '' : a type of fish tones of low frequency and the sentences : I went fishing for some sea bass .
+The bass line of the song is too weak .
+To a human , it is obvious that the first sentence is using the word `` bass -LRB- fish -RRB- '' , as in the former sense above and in the second sentence , the word `` bass -LRB- instrument -RRB- '' is being used as in the latter sense below .
+Developing algorithms to replicate this human ability can often be a difficult task , as is further exemplified by the implicit equivocation between `` bass -LRB- sound -RRB- '' and `` bass '' -LRB- musical instrument -RRB- .
+History WSD was first formulated as a distinct computational task during the early days of machine translation in the 1940s , making it one of the oldest problems in computational linguistics .
+Warren Weaver , in his famous 1949 memorandum on translation , first introduced the problem in a computational context .
+Early researchers understood the significance and difficulty of WSD well .
+In fact , Bar-Hillel -LRB- 1960 -RRB- used the above example to argue that WSD could not be solved by `` electronic computer '' because of the need in general to model all world knowledge .
+In the 1970s , WSD was a subtask of semantic interpretation systems developed within the field of artificial intelligence , but since WSD systems were largely rule-based and hand-coded they were prone to a knowledge acquisition bottleneck .
+By the 1980s large-scale lexical resources , such as the Oxford Advanced Learner 's Dictionary of Current English -LRB- OALD -RRB- , became available : hand-coding was replaced with knowledge automatically extracted from these resources , but disambiguation was still knowledge-based or dictionary-based .
+In the 1990s , the statistical revolution swept through computational linguistics , and WSD became a paradigm problem on which to apply supervised machine learning techniques .
+The 2000s saw supervised techniques reach a plateau in accuracy , and so attention has shifted to coarser-grained senses , domain adaptation , semi-supervised and unsupervised corpus-based systems , combinations of different methods , and the return of knowledge-based systems via graph-based methods .
+Still , supervised systems continue to perform best .
+Difficulties Differences between dictionaries One problem with word sense disambiguation is deciding what the senses are .
+In cases like the word bass above , at least some senses are obviously different .
+In other cases , however , the different senses can be closely related -LRB- one meaning being a metaphorical or metonymic extension of another -RRB- , and in such cases division of words into senses becomes much more difficult .
+Different dictionaries and thesauruses will provide different divisions of words into senses .
+One solution some researchers have used is to choose a particular dictionary , and just use its set of senses .
+Generally , however , research results using broad distinctions in senses have been much better than those using narrow ones .
+However , given the lack of a full-fledged coarse-grained sense inventory , most researchers continue to work on fine-grained WSD .
+Most research in the field of WSD is performed by using WordNet as a reference sense inventory for English .
+WordNet is a computational lexicon that encodes concepts as synonym sets -LRB- e.g. the concept of car is encoded as -LCB- car , auto , automobile , machine , motorcar -RCB- -RRB- .
+Other resources used for disambiguation purposes include Roget 's Thesaurus and Wikipedia .
+Part-of-speech tagging In any real test , part-of-speech tagging and sense tagging are very closely related with each potentially making constraints to the other .
+And the question whether these tasks should be kept together or decoupled is still not unanimously resolved , but recently scientists incline to test these things separately -LRB- e.g. in the Senseval\/SemEval competitions parts of speech are provided as input for the text to disambiguate -RRB- .
+It is instructive to compare the word sense disambiguation problem with the problem of part-of-speech tagging .
+Both involve disambiguating or tagging with words , be it with senses or parts of speech .
+However , algorithms used for one do not tend to work well for the other , mainly because the part of speech of a word is primarily determined by the immediately adjacent one to three words , whereas the sense of a word may be determined by words further away .
+The success rate for part-of-speech tagging algorithms is at present much higher than that for WSD , state-of-the art being around 95 % accuracy or better , as compared to less than 75 % accuracy in word sense disambiguation with supervised learning .
+These figures are typical for English , and may be very different from those for other languages .
+Inter-judge variance Another problem is inter-judge variance .
+WSD systems are normally tested by having their results on a task compared against those of a human .
+However , while it is relatively easy to assign parts of speech to text , training people to tag senses is far more difficult .
+While users can memorize all of the possible parts of speech a word can take , it is often impossible for individuals to memorize all of the senses a word can take .
+Moreover , humans do not agree on the task at hand -- give a list of senses and sentences , and humans will not always agree on which word belongs in which sense .
+Thus , a computer can not be expected to give better performance on such a task than a human -LRB- indeed , since the human serves as the standard , the computer being better than the human is incoherent -RRB- , -LRB- citation needed -RRB- so the human performance serves as an upper bound .
+Human performance , however , is much better on coarse-grained than fine-grained distinctions , so this again is why research on coarse-grained distinctions has been put to test in recent WSD evaluation exercises .
+Common sense Some AI researchers like Douglas Lenat argue that one can not parse meanings from words without some form of common sense ontology .
+For example , comparing these two sentences : `` Jill and Mary are sisters . ''
+-- -LRB- they are sisters of each other -RRB- .
+`` Jill and Mary are mothers . ''
+-- -LRB- each is independently a mother -RRB- .
+To properly identify senses of words one must know common sense facts .
+Moreover , sometimes the common sense is needed to disambiguate such words like pronouns in case of having anaphoras or cataphoras in the text .
+Sense inventory and algorithms ' task-dependency A task-independent sense inventory is not a coherent concept : each task requires its own division of word meaning into senses relevant to the task .
+For example , the ambiguity of ` mouse ' -LRB- animal or device -RRB- is not relevant in English-French machine translation , but is relevant in information retrieval .
+The opposite is true of ` river ' , which requires a choice in French -LRB- fleuve ` flows into the sea ' , or rivière ` flows into a river ' -RRB- .
+Also , completely different algorithms might be required by different applications .
+In machine translation , the problem takes the form of target word selection .
+Here the `` senses '' are words in the target language , which often correspond to significant meaning distinctions in the source language -LRB- bank could translate to French banque ` financial bank ' or rive ` edge of river ' -RRB- .
+In information retrieval , a sense inventory is not necessarily required , because it is enough to know that a word is used in the same sense in the query and a retrieved document ; what sense that is , is unimportant .
+Discreteness of senses Finally , the very notion of `` word sense '' is slippery and controversial .
+Most people can agree in distinctions at the coarse-grained homograph level -LRB- e.g. , pen as writing instrument or enclosure -RRB- , but go down one level to fine-grained polysemy , and disagreements arise .
+For example , in Senseval-2 , which used fine-grained sense distinctions , human annotators agreed in only 85 % of word occurrences .
+Word meaning is in principle infinitely variable and context sensitive .
+It does not divide up easily into distinct or discrete sub-meanings .
+Lexicographers frequently discover in corpora loose and overlapping word meanings , and standard or conventional meanings extended , modulated , and exploited in a bewildering variety of ways .
+The art of lexicography is to generalize from the corpus to definitions that evoke and explain the full range of meaning of a word , making it seem like words are well-behaved semantically .
+However , it is not at all clear if these same meaning distinctions are applicable in computational applications , as the decisions of lexicographers are usually driven by other considerations .
+Recently , a task -- named lexical substitution -- has been proposed as a possible solution to the sense discreteness problem .
+The task consists of providing a substitute for a word in context that preserves the meaning of the original word -LRB- potentially , substitutes can be chosen from the full lexicon of the target language , thus overcoming discreteness -RRB- .
+Approaches and methods As in all natural language processing , there are two main approaches to WSD -- deep approaches and shallow approaches .
+Deep approaches presume access to a comprehensive body of world knowledge .
+Knowledge , such as `` you can go fishing for a type of fish , but not for low frequency sounds '' and `` songs have low frequency sounds as parts , but not types of fish '' , is then used to determine in which sense the word is used .

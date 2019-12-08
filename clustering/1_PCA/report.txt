@@ -1,0 +1,8 @@
+Name: B.Nikhil
+Roll no.: 170050099
+
+Observations
+============
+Execution time for pca_small for d = 50, n = 3000 is 0.028 sec where as for d = 3000, n = 100 is 81.753 sec
+
+Bottleneck for our code is the value of d. As the covariance matrix for which we are calculating eigen values is of dimension d*d. Calculation of eigen values takes more time and is the bottleneck.
